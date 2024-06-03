@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 // import quotes from "../quotesData"
 
 export default function QuoteDisplay() {
@@ -16,7 +16,14 @@ export default function QuoteDisplay() {
     // }
 
     const [quote, setQuote] = useState({ text: '', author: '' })
-    const [favourites, setFavourites] = useState([])
+    const [favourites, setFavourites] = useState(() => {
+        const savedFavs = localStorage.getItem('favs')
+        return savedFavs ? JSON.parse(savedFavs) : []
+      })
+
+    useEffect(() => {
+        localStorage.setItem('favs', JSON.stringify(favourites))
+      }, [favourites])
 
     const fetchQuote = async () => {
         try {
