@@ -19,11 +19,11 @@ export default function QuoteDisplay() {
     const [favourites, setFavourites] = useState(() => {
         const savedFavs = localStorage.getItem('favs')
         return savedFavs ? JSON.parse(savedFavs) : []
-      })
+    })
 
     useEffect(() => {
         localStorage.setItem('favs', JSON.stringify(favourites))
-      }, [favourites])
+    }, [favourites])
 
     const fetchQuote = async () => {
         try {
@@ -51,13 +51,22 @@ export default function QuoteDisplay() {
         setFavourites((prevFavourites) => prevFavourites.filter((el, elIndex) => elIndex !== index))
     }
 
+    const tweetQuote = () => {
+        const tweetText = `"${quote.text}" - ${quote.author}`
+        const tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText)}`
+        window.open(tweetUrl, '_blank')
+    }
+
     return (
         <div>
             <div className='quote-display'>
                 <p className='quote'>{quote.text}</p>
                 <p className='author'>- {quote.author}</p>
                 <button className="new-quote-button" onClick={getNewQuote}>New Quote</button>
-                <button className="new-quote-button" onClick={addFavourite}>Add to Favourites</button>
+            <button className="new-quote-button" onClick={addFavourite}>Add to Favourites</button>
+            <button className='tweet-button' onClick={tweetQuote}>
+                <i className="fa-brands fa-twitter"></i> Tweet
+            </button>
             </div>
             <div className='favourites-container'>
                 {favourites.map((fav, index) => (
