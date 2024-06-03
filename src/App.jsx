@@ -1,4 +1,3 @@
-import React from 'react'
 import QuoteDisplay from './components/QuoteDisplay'
 import './style.css';
 
