@@ -1,3 +1,5 @@
+@import '@fortawesome/fontawesome-free/css/all.min.css';
+
 /* General styling */
 body {
   font-family: Arial, sans-serif;
@@ -55,6 +57,32 @@ body {
 
 .new-quote-button:hover {
   background-color: #0056b3;
+}
+
+.tweet-button {
+  background-color: #1da1f2;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tweet-button i {
+  margin-right: 8px;
+}
+
+.tweet-button:hover {
+  background-color: #1a91da;
+}
+
+.quote-display button {
+  display: inline-block;
 }
 
 /* Favourites container styling */
